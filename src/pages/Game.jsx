@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import TamagotchiContext from "../context/Context";
 import CardAnimal from "../components/CardAnimal";
 
@@ -9,6 +9,13 @@ function Game() {
   const year = fullDate.getFullYear()
 
   const {tamagotchi, setTamagotchi} = useContext(TamagotchiContext);
+
+  const [tamagotchiName] = useState(localStorage.getItem('tamagotchiName'));
+  const [tamagotchiType] = useState(localStorage.getItem('tamagotchiType'));
+
+  // setTamagotchiName(localStorage.getItem('tamagotchiName'));
+
+  // setTamagotchiType(localStorage.getItem('tamagotchiType'));
 
   useEffect(()=>{
    if (tamagotchi) {
@@ -22,8 +29,8 @@ function Game() {
     }, 5000);
     return () => clearInterval(interval);
    }
-  }, [ tamagotchi, setTamagotchi ]);
 
+  }, [ tamagotchi, setTamagotchi ]);
 
 
   const feedPet = () => {
@@ -45,15 +52,15 @@ function Game() {
 
   return (
     <div>
-      <h1>{`Bem-vindo ao lar de ${tamagotchi.name}`}</h1>
+      <h1>{`Bem-vindo ao lar de ${tamagotchiName}`}</h1>
       <h2>{`hoje é: ${day} de ${month} de ${year}`}</h2>
       <h3>{`${fullDate}`}</h3>
 
-    <CardAnimal type={tamagotchi.type} />
+      <CardAnimal type={tamagotchiType} />
 
       <div>
         <h3>Status do seu pet:</h3>
-        <h2>{`${tamagotchi.type}`}</h2>
+        <h2>{`${tamagotchiType}`}</h2>
         <ul>
           <li>{`saúde: ${tamagotchi.health}`}</li>
           <li>{`felicidade: ${tamagotchi.happiness}`}</li>

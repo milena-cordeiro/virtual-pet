@@ -10,13 +10,20 @@ function CreateTamagotchi(props) {
 
   const {history} = props;
 
+  const saveInLocalStorage = (name, type) => {
+
+    localStorage.setItem('tamagotchiName', name);
+    localStorage.setItem('tamagotchiType', type);
+
+  }
+
   const createNewTamagotchi = () => {
     globalState.setTamagotchi({
       ...globalState.tamagotchi,
       name,
       type
     });
-
+    saveInLocalStorage(name, type);
     history.push('/game');
   }
 
