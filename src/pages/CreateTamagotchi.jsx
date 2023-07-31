@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function CreateTamagotchi() {
+function CreateTamagotchi(props) {
   const [tamagotchi, setTamagotchi] = useState({
     health: 100,
     happiness: 100,
@@ -10,6 +10,8 @@ function CreateTamagotchi() {
   const [name, setName] = useState('');
   const [type, setType] = useState('cat');
 
+  const {history} = props;
+
   const createNewTamagotchi = () => {
     setTamagotchi({
       name,
@@ -18,6 +20,8 @@ function CreateTamagotchi() {
       happiness: tamagotchi.happiness,
       hunger: tamagotchi.hunger
     });
+
+    history.push('/game')
   }
 
   return (
