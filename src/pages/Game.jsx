@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import TamagotchiContext from "../context/Context";
+import CardAnimal from "../components/CardAnimal";
 
 function Game() {
   const fullDate = new Date();
@@ -47,6 +48,8 @@ function Game() {
       <h1>{`Bem-vindo ao lar de ${tamagotchi.name}`}</h1>
       <h2>{`hoje é: ${day} de ${month} de ${year}`}</h2>
       <h3>{`${fullDate}`}</h3>
+
+    <CardAnimal type={tamagotchi.type} />
 
       <div>
         <h3>Status do seu pet:</h3>
